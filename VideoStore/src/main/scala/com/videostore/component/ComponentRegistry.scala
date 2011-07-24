@@ -7,7 +7,7 @@ import service._
  
 object ComponentRegistry extends MovieDaoComponent with CustomerDaoComponent with MovieInstanceDaoComponent with AccountDaoComponent  with ReviewDaoComponent with RentalDaoComponent
                         with InventoryServiceComponent with RentalServiceComponent with ReservationServiceComponent with CostServiceComponent with AccountServiceComponent with ReviewServiceComponent with CustomerServiceComponent
-                        with LogServiceComponent with CommentDaoComponent with StorePolicyDaoComponent with LateFeeDaoComponent {
+                        with LogServiceComponent with CommentDaoComponent with StorePolicyDaoComponent with LateFeeDaoComponent with ReservationDaoComponent {
   val movieDao = new MovieDao
   val customerDao = new CustomerDao
   val inventoryService = new InventoryService
@@ -25,4 +25,5 @@ object ComponentRegistry extends MovieDaoComponent with CustomerDaoComponent wit
   val commentDao = new CommentDao
   val storePolicyDao = new StorePolicyDao
   val lateFeeDao = new LateFeeDao
+  val reservationDao = new ReservationDao
 }

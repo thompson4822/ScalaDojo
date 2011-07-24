@@ -1,8 +1,20 @@
 package com.videostore
 
 /** Created on 7/23/11 at 8:05 AM by Steve */
- 
+
+import model.Reservation
+import org.mockito.Mockito._
+import org.mockito.Matchers._
+import org.mockito.BDDMockito.{given => givenThat}
+
 class WaitingListSpec extends CommonFeatureSpec {
+
+  override val reservationService = new ReservationService
+
+  override def beforeEach() = {
+    super.beforeEach()
+  }
+
   feature("If a movie is not available, customers can be added to a queue and notified when it arrives") {
     info("As a customer")
     info("I want to be added to a waiting list for a movie if all copies are in circulation")
@@ -12,8 +24,9 @@ class WaitingListSpec extends CommonFeatureSpec {
       given("a rental exists")
       and("at least one customer other than the renter exists")
       when("that customer wants to rent the movie")
+        reservationService.addReservation(customer, movie)
       then("the customer should be added to the waiting list for that movie")
-      pending
+        verify(reservationDao).save(any(classOf[Reservation]))
     }
 
     scenario("Customer can be added to a waiting list when a movie is reserved") {
@@ -25,6 +38,7 @@ class WaitingListSpec extends CommonFeatureSpec {
       pending
     }
 
+    // This crosses over with restock
     scenario("First customer in the waiting list should be sent an email when the rental is returned") {
       given("there is at least one customer in the waiting list for a movie")
       and("all copies of the movie are in circulation")
