@@ -10,20 +10,10 @@ import org.mockito.Matchers._
  
 class MovieReviewServiceSpec extends CommonFeatureSpec {
 
-  var account: Account = _
-  var customer: Customer = _
-  var authorization: Authorization = _
-  var movie: Movie = _
-  var review: Review = _
-
   override val reviewService = new ReviewService
 
   override def beforeEach() = {
-    customer = Customer(0, "Steve", "Nelson", "rocketman@genie.net", Gender.Male, new Date)
-    authorization = Authorization(0, "rocketman", "pa$$w0rd")
-    account = Account(0, customer, authorization)
-    movie = Movie(0, "The Greatest Movie Evar", 2011)
-    review = Review(0, account, movie, 4.5, title="These guys aren't kidding", text="This really is the BEST MOVIE EVAR!!!")
+    super.beforeEach()
   }
 
   feature("Customers with an account can review the movies they have rented or seen") {

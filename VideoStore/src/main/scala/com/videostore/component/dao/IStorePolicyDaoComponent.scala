@@ -10,6 +10,7 @@ trait IStorePolicyDaoComponent {
   trait IStorePolicyDao {
     def rentalLimit: Int
     def lateFee: Double
+    def rentalFee: Double
   }
 
 }
@@ -18,5 +19,6 @@ trait StorePolicyDaoComponent extends IStorePolicyDaoComponent {
   class StorePolicyDao extends IStorePolicyDao {
     def rentalLimit: Int = throw new NotImplementedException
     def lateFee: Double = throw new NotImplementedException
+    def rentalFee: Double = throw new NotImplementedException
   }
 }

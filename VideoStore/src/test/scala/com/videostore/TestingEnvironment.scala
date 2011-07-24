@@ -8,7 +8,7 @@ import org.scalatest.mock.MockitoSugar
  
 trait TestingEnvironment extends MovieDaoComponent with CustomerDaoComponent with MovieInstanceDaoComponent with AccountDaoComponent  with ReviewDaoComponent with RentalDaoComponent
                         with InventoryServiceComponent with RentalServiceComponent with ReservationServiceComponent with CostServiceComponent with AccountServiceComponent with ReviewServiceComponent with CustomerServiceComponent
-                        with LogServiceComponent with CommentDaoComponent with StorePolicyDaoComponent {
+                        with LogServiceComponent with CommentDaoComponent with StorePolicyDaoComponent with LateFeeDaoComponent {
   this: MockitoSugar =>
 
   val movieDao = mock[MovieDao]
@@ -27,4 +27,5 @@ trait TestingEnvironment extends MovieDaoComponent with CustomerDaoComponent wit
   val logService = mock[LogService]
   val commentDao = mock[CommentDao]
   val storePolicyDao = mock[StorePolicyDao]
+  val lateFeeDao = mock[LateFeeDao]
 }

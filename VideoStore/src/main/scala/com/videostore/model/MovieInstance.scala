@@ -5,5 +5,5 @@ import java.util.Date
 
 /** Created on 7/24/11 at 8:37 AM by Steve */
 
-case class MovieInstance(id: Long, movie: Movie, acquisitionDate: Date, mediaType: MediaType.Value)
+case class MovieInstance(id: Long, movie: Movie, acquisitionDate: Date, mediaType: MediaType.Value, originalCost: Double)
 

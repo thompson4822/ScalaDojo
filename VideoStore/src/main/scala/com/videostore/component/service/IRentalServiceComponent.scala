@@ -34,8 +34,8 @@ trait RentalServiceComponent extends IRentalServiceComponent {
     def rentalFor(movie: MovieInstance): Rental = throw new NotImplementedException
     def rentalsFor(customer: Customer): Seq[Rental] = rentalDao.findRentalsBy(customer)
     def inCirculation: Map[Customer, Seq[MovieInstance]] = throw new NotImplementedException
-    def late: Map[Customer, Seq[Rental]]
-    def lateFor(customer: Customer): Seq[Rental]
+    def late: Map[Customer, Seq[Rental]] = throw new NotImplementedException
+    def lateFor(customer: Customer): Seq[Rental] = throw new NotImplementedException
 
     def rent(customer: Customer, movieInstance: MovieInstance): Option[Rental] = {
       val rental = Rental(0, movieInstance, customer, costService.cost(movieInstance, customer))

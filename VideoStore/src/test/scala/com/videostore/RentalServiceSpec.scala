@@ -10,23 +10,12 @@ import java.util.Date
  
 class RentalServiceSpec extends CommonFeatureSpec {
 
-  var customer: Customer = _
-  var movie: Movie = _
-  var movieInstance: MovieInstance = _
-  var rental: Rental = _
-
   override val rentalService = new RentalService
 
   // Get some common init/mocking out of the way
   override def beforeEach() = {
-    customer = Customer(0, "Steve", "Nelson", "snelson@rocket.com", dob = new Date)
-    movie = Movie(0, "The Best Movie Evar", 2011)
-    movieInstance = MovieInstance(0, movie, new Date, MediaType.BluRay)
-    rental = Rental(0, movieInstance, customer, charge = 1.00)
+    super.beforeEach()
     givenThat(storePolicyDao.rentalLimit).willReturn(1)
-    //givenThat(customerDao.findByName(anyString(), anyString())).willReturn(customer)
-    //givenThat(movieDao.findByTitle(anyString())).willReturn(movie)
-    //givenThat(rentalHistory.findByRental(anyObject())).willReturn(rental)
   }
 
 
@@ -71,7 +60,7 @@ class RentalServiceSpec extends CommonFeatureSpec {
     scenario("Customer cannot rent more movies at once than store policy allows") {
       given("the store policy is a single movie rental")
       and("there are at least two movies")
-        val secondMovieInstance = MovieInstance(0, movie, new Date, MediaType.DVD)
+        val secondMovieInstance = MovieInstance(0, movie, new Date, MediaType.DVD, 15.00)
       and("one movie has already been rented to the customer")
         givenThat(rentalDao.findRentalsBy(customer)).willReturn(Seq(rental))
       when("the customer rents the second movie")
